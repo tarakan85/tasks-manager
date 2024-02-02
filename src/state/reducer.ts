@@ -1,4 +1,4 @@
-import { TAction, EActionTypes } from "./actions";
+import { TAction, EAction } from "./actions";
 
 export type TAppState = {
   count: number;
@@ -10,9 +10,9 @@ export const initialState: TAppState = {
 
 export function reducer(state: TAppState, action: TAction): TAppState {
   switch (action.type) {
-    case EActionTypes.INCREMENT:
+    case EAction.INCREMENT:
       return { ...state, count: state.count + 1 };
-    case EActionTypes.DECREMENT:
+    case EAction.DECREMENT:
       return { ...state, count: state.count - 1 };
     default:
       return state;

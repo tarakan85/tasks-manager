@@ -1,24 +1,17 @@
-import { createContext, useContext, useCallback } from "react";
+import { createContext, useContext } from "react";
 import { TAppState, initialState } from "./reducer";
-import { incrementAction, decrementAction, TAction } from "./actions";
+import { incrementAction, decrementAction } from "./actions";
 
 export const AppContext = createContext<{
   state: TAppState;
-  dispatch: (action: TAction) => void;
+  increment: (...args: Parameters<typeof incrementAction>) => void;
+  decrement: (...args: Parameters<typeof decrementAction>) => void;
 }>({
   state: initialState,
-  dispatch: () => undefined,
+  increment: () => undefined,
+  decrement: () => undefined,
 });
 
 export function useAppContext() {
-  const { state, dispatch } = useContext(AppContext);
-
-  const increment = useCallback(() => dispatch(incrementAction()), [dispatch]);
-  const decrement = useCallback(() => dispatch(decrementAction()), [dispatch]);
-
-  return {
-    state,
-    increment,
-    decrement,
-  };
+  return useContext(AppContext);
 }
