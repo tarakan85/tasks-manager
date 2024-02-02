@@ -1,4 +1,4 @@
-import { TAction, EActionTypes } from "./actions";
+import { TAction, EActionTypes, TActionPayload } from "./actions";
 
 export type TAppState = {
   count: number;
@@ -8,13 +8,26 @@ export const initialState: TAppState = {
   count: 0,
 };
 
+type TReducerMap = Record<
+  EActionTypes,
+  (state: TAppState, payload?: TActionPayload) => TAppState
+>;
+
+const reducerMap: TReducerMap = {
+  [EActionTypes.INCREMENT]: (state: TAppState) => ({
+    ...state,
+    count: state.count + 1,
+  }),
+  [EActionTypes.DECREMENT]: (state: TAppState) => ({
+    ...state,
+    count: state.count - 1,
+  }),
+};
+
 export function reducer(state: TAppState, action: TAction): TAppState {
-  switch (action.type) {
-    case EActionTypes.INCREMENT:
-      return { ...state, count: state.count + 1 };
-    case EActionTypes.DECREMENT:
-      return { ...state, count: state.count - 1 };
-    default:
-      return state;
+  if (action.type in reducerMap) {
+    return reducerMap[action.type](state, action.payload);
   }
+
+  return state;
 }
