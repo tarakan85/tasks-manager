@@ -1,28 +1,10 @@
 export enum EActionTypes {
-  INCREMENT = "INCREMENT",
-  DECREMENT = "DECREMENT",
+  CREATE_TASK = "CREATE_TASK",
 }
 
-export type TActionWithPayload<TActionPayload = undefined> = {
-  type: EActionTypes;
-  payload?: TActionPayload;
-};
-
-export const incrementAction = (): TActionWithPayload => ({
-  type: EActionTypes.INCREMENT,
-});
-export const decrementAction = (): TActionWithPayload<string> => ({
-  type: EActionTypes.DECREMENT,
+export const createTaskAction = (text: string) => ({
+  type: EActionTypes.CREATE_TASK,
+  payload: text,
 });
 
-export type TAction =
-  | ReturnType<typeof incrementAction>
-  | ReturnType<typeof decrementAction>;
-
-type TExtracActionPayload<T extends TAction> = T extends TActionWithPayload<
-  infer P
->
-  ? P
-  : never;
-
-export type TActionPayload = TExtracActionPayload<TAction>;
+export type TAction = ReturnType<typeof createTaskAction>;

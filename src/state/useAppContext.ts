@@ -1,15 +1,13 @@
 import { createContext, useContext } from "react";
 import { TAppState, initialState } from "./reducer";
-import { incrementAction, decrementAction } from "./actions";
+import { createTaskAction } from "./actions";
 
 export const AppContext = createContext<{
   state: TAppState;
-  increment: (...args: Parameters<typeof incrementAction>) => void;
-  decrement: (...args: Parameters<typeof decrementAction>) => void;
+  createTask: (...args: Parameters<typeof createTaskAction>) => void;
 }>({
   state: initialState,
-  increment: () => undefined,
-  decrement: () => undefined,
+  createTask: () => undefined,
 });
 
 export function useAppContext() {

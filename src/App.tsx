@@ -1,10 +1,10 @@
-import { Counter } from "./components/Counter";
+import { TaskManager } from "./components/TaskManager";
 import { AppContextProvider } from "./state/appContextProvider";
 
 function App() {
   return (
     <AppContextProvider>
-      <Counter />
+      <TaskManager />
     </AppContextProvider>
   );
 }
