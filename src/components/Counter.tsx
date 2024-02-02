@@ -1,6 +1,6 @@
 import { useAppContext } from "../state/useAppContext";
 
-export function Counter() {
+export const Counter = () => {
   const { state, increment, decrement } = useAppContext();
 
   return (
@@ -10,4 +10,4 @@ export function Counter() {
       <button onClick={decrement}>Decrement</button>
     </div>
   );
-}
+};

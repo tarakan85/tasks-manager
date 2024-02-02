@@ -1,18 +1,18 @@
-import { Action, ActionType } from "./actions";
+import { TAction, EAction } from "./actions";
 
-export interface AppState {
+export type TAppState = {
   count: number;
-}
+};
 
-export const initialState: AppState = {
+export const initialState: TAppState = {
   count: 0,
 };
 
-export function reducer(state: AppState, action: Action): AppState {
+export function reducer(state: TAppState, action: TAction): TAppState {
   switch (action.type) {
-    case ActionType.INCREMENT:
+    case EAction.INCREMENT:
       return { ...state, count: state.count + 1 };
-    case ActionType.DECREMENT:
+    case EAction.DECREMENT:
       return { ...state, count: state.count - 1 };
     default:
       return state;

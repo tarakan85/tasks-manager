@@ -1,11 +1,11 @@
-export enum ActionType {
+export enum EAction {
   INCREMENT = "INCREMENT",
   DECREMENT = "DECREMENT",
 }
 
-export const incrementAction = () => ({ type: ActionType.INCREMENT });
-export const decrementAction = () => ({ type: ActionType.DECREMENT });
+export const incrementAction = () => ({ type: EAction.INCREMENT });
+export const decrementAction = () => ({ type: EAction.DECREMENT });
 
-export type Action =
+export type TAction =
   | ReturnType<typeof incrementAction>
   | ReturnType<typeof decrementAction>;
