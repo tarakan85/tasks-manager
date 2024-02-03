@@ -1,4 +1,4 @@
-import { useReducer, useCallback, ReactNode, FC } from "react";
+import { useReducer, useCallback, ReactNode, FC, useMemo } from "react";
 
 import { TasksContext } from "./use-tasks-context";
 import { reducer, initialState } from "../tasks.reducer";
@@ -9,7 +9,23 @@ import {
   toggleTaskStatusAction,
   setTasksFilterAction,
 } from "../tasks.actions";
-import { EFilters } from "../tasks.types";
+import { EFilters, Task } from "../tasks.types";
+
+type TFilterFn = (task: Task) => boolean;
+
+const filterFnMap: Partial<Record<EFilters, TFilterFn>> = {
+  [EFilters.SHOW_ACTIVE]: (task: Task) => !task.isComplete,
+  [EFilters.SHOW_COMPLETED]: (task: Task) => task.isComplete,
+};
+
+const applyTasksFilter = (tasks: Task[], filter: EFilters) => {
+  if (filter in filterFnMap) {
+    const filterFn = filterFnMap[filter]!;
+    return tasks.filter(filterFn);
+  }
+
+  return tasks;
+};
 
 export type TTasksContextProviderProps = {
   children: ReactNode;
@@ -53,10 +69,17 @@ export const TasksContextProvider: FC<TTasksContextProviderProps> = ({
     [dispatch]
   );
 
+  const { tasks, filter } = state;
+
+  const filteredTasks = useMemo(() => {
+    return applyTasksFilter(tasks, filter);
+  }, [tasks, filter]);
+
   return (
     <TasksContext.Provider
       value={{
-        state,
+        tasks: filteredTasks,
+        filter,
         createTask,
         updateTaskText,
         removeTask,

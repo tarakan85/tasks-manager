@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useTasksContext } from "~/state/tasks/context/use-tasks-context";
 
 export const TaskManager = () => {
-  const { state, createTask } = useTasksContext();
+  const { tasks, createTask } = useTasksContext();
 
   const [inputValue, setInputValue] = useState("");
 
@@ -21,7 +21,7 @@ export const TaskManager = () => {
       >
         create task
       </button>
-      <code>{JSON.stringify(state.tasks, null, 2)}</code>
+      <code>{JSON.stringify(tasks, null, 2)}</code>
     </div>
   );
 };

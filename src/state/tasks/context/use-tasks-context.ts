@@ -1,6 +1,7 @@
 import { createContext, useContext } from "react";
 
 import { TTasksState, initialState } from "../tasks.reducer";
+import { EFilters } from "../tasks.types";
 import {
   createTaskAction,
   updateTaskTextAction,
@@ -10,7 +11,8 @@ import {
 } from "../tasks.actions";
 
 export const TasksContext = createContext<{
-  state: TTasksState;
+  tasks: TTasksState["tasks"];
+  filter: EFilters;
   createTask: (...args: Parameters<typeof createTaskAction>) => void;
   updateTaskText: (...args: Parameters<typeof updateTaskTextAction>) => void;
   removeTask: (...args: Parameters<typeof removeTaskAction>) => void;
@@ -19,7 +21,8 @@ export const TasksContext = createContext<{
   ) => void;
   setTasksFilter: (...args: Parameters<typeof setTasksFilterAction>) => void;
 }>({
-  state: initialState,
+  tasks: initialState.tasks,
+  filter: initialState.filter,
   createTask: () => undefined,
   updateTaskText: () => undefined,
   removeTask: () => undefined,
