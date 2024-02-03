@@ -9,7 +9,10 @@ export type TTasksState = {
 };
 
 export const initialState: TTasksState = {
-  tasks: [],
+  tasks: [
+    { text: "hello", id: nanoid(), isComplete: false },
+    { text: "world", id: nanoid(), isComplete: false },
+  ],
   filter: EFilters.SHOW_ALL,
 };
 
