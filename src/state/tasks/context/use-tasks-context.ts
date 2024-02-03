@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import React from "react";
 
 import { TTasksState, initialState } from "../tasks.reducer";
 import { EFilters } from "../tasks.types";
@@ -10,7 +10,7 @@ import {
   setTasksFilterAction,
 } from "../tasks.actions";
 
-export const TasksContext = createContext<{
+export const TasksContext = React.createContext<{
   tasks: TTasksState["tasks"];
   filter: EFilters;
   createTask: (...args: Parameters<typeof createTaskAction>) => void;
@@ -31,5 +31,5 @@ export const TasksContext = createContext<{
 });
 
 export const useTasksContext = () => {
-  return useContext(TasksContext);
+  return React.useContext(TasksContext);
 };

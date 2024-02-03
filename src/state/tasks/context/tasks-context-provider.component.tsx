@@ -1,4 +1,4 @@
-import { useReducer, useCallback, ReactNode, FC, useMemo } from "react";
+import React from "react";
 
 import { TasksContext } from "./use-tasks-context";
 import { reducer, initialState } from "../tasks.reducer";
@@ -28,41 +28,41 @@ const applyTasksFilter = (tasks: Task[], filter: EFilters) => {
 };
 
 export type TTasksContextProviderProps = {
-  children: ReactNode;
+  children: React.ReactNode;
 };
 
-export const TasksContextProvider: FC<TTasksContextProviderProps> = ({
+export const TasksContextProvider: React.FC<TTasksContextProviderProps> = ({
   children,
 }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = React.useReducer(reducer, initialState);
 
-  const createTask = useCallback(
+  const createTask = React.useCallback(
     (text: string) => dispatch(createTaskAction(text)),
     [dispatch]
   );
 
-  const updateTaskText = useCallback(
+  const updateTaskText = React.useCallback(
     (taskId: string, newText: string) => {
       dispatch(updateTaskTextAction(taskId, newText));
     },
     [dispatch]
   );
 
-  const removeTask = useCallback(
+  const removeTask = React.useCallback(
     (taskId: string) => {
       dispatch(removeTaskAction(taskId));
     },
     [dispatch]
   );
 
-  const toggleTaskStatus = useCallback(
+  const toggleTaskStatus = React.useCallback(
     (taskId: string) => {
       dispatch(toggleTaskStatusAction(taskId));
     },
     [dispatch]
   );
 
-  const setTasksFilter = useCallback(
+  const setTasksFilter = React.useCallback(
     (filter: EFilters) => {
       dispatch(setTasksFilterAction(filter));
     },
@@ -71,7 +71,7 @@ export const TasksContextProvider: FC<TTasksContextProviderProps> = ({
 
   const { tasks, filter } = state;
 
-  const filteredTasks = useMemo(() => {
+  const filteredTasks = React.useMemo(() => {
     return applyTasksFilter(tasks, filter);
   }, [tasks, filter]);
 
