@@ -1,17 +1,17 @@
-import { TAction, EActionTypes } from "./actions";
-import { Task, EFilters } from "./types";
+import { TAction, EActionTypes } from "./tasks.actions";
+import { Task, EFilters } from "./tasks.types";
 
-export type TAppState = {
+export type TTasksState = {
   tasks: Task[];
   filter: EFilters;
 };
 
-export const initialState: TAppState = {
+export const initialState: TTasksState = {
   tasks: [],
   filter: EFilters.SHOW_ALL,
 };
 
-export function reducer(state: TAppState, action: TAction): TAppState {
+export const reducer = (state: TTasksState, action: TAction): TTasksState => {
   switch (action.type) {
     case EActionTypes.CREATE_TASK:
       return {
@@ -28,4 +28,4 @@ export function reducer(state: TAppState, action: TAction): TAppState {
     default:
       return state;
   }
-}
+};

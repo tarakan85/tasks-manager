@@ -1,12 +1,12 @@
-import { TaskManager } from "./components/TaskManager";
-import { AppContextProvider } from "./state/appContextProvider";
+import { TaskManager } from "./components/task-manager/task-manager.component";
+import { TasksContextProvider } from "./state/tasks/context/tasks-context-provider.component";
 
-function App() {
+const App = () => {
   return (
-    <AppContextProvider>
+    <TasksContextProvider>
       <TaskManager />
-    </AppContextProvider>
+    </TasksContextProvider>
   );
-}
+};
 
 export default App;

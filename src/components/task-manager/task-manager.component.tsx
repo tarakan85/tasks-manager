@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useAppContext } from "../state/useAppContext";
+import { useTasksContext } from "../../state/tasks/context/use-tasks-context";
 
 export const TaskManager = () => {
-  const { state, createTask } = useAppContext();
+  const { state, createTask } = useTasksContext();
 
   const [inputValue, setInputValue] = useState("");
 
