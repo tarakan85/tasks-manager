@@ -1,5 +1,5 @@
 import React from "react";
-import Box from "@mui/material/Box";
+import { Box } from "@mui/material";
 
 import { TaskItem } from "~/components/task-item/task-item.components";
 import { useTasksContext } from "~/state/tasks/context/use-tasks-context";

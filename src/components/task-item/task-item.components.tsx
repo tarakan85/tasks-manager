@@ -1,10 +1,7 @@
 import React from "react";
 import Input from "@mui/material/Input";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Checkbox from "@mui/material/Checkbox";
+
+import { Box, IconButton, Typography, Checkbox } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import EditIcon from "@mui/icons-material/Edit";
