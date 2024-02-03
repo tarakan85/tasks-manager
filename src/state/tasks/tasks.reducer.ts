@@ -51,6 +51,12 @@ export const reducer = (state: TTasksState, action: TAction): TTasksState => {
             : task
         ),
       };
+
+    case EActionTypes.SET_TASKS_FILTER:
+      return {
+        ...state,
+        filter: action.payload,
+      };
     default:
       return state;
   }

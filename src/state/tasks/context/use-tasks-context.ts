@@ -6,6 +6,7 @@ import {
   updateTaskTextAction,
   removeTaskAction,
   toggleTaskStatusAction,
+  setTasksFilterAction,
 } from "../tasks.actions";
 
 export const TasksContext = createContext<{
@@ -16,12 +17,14 @@ export const TasksContext = createContext<{
   toggleTaskStatus: (
     ...args: Parameters<typeof toggleTaskStatusAction>
   ) => void;
+  setTasksFilter: (...args: Parameters<typeof setTasksFilterAction>) => void;
 }>({
   state: initialState,
   createTask: () => undefined,
   updateTaskText: () => undefined,
   removeTask: () => undefined,
   toggleTaskStatus: () => undefined,
+  setTasksFilter: () => undefined,
 });
 
 export const useTasksContext = () => {

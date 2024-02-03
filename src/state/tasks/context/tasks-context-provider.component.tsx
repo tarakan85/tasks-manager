@@ -7,7 +7,9 @@ import {
   updateTaskTextAction,
   removeTaskAction,
   toggleTaskStatusAction,
+  setTasksFilterAction,
 } from "../tasks.actions";
+import { EFilters } from "../tasks.types";
 
 export type TTasksContextProviderProps = {
   children: ReactNode;
@@ -44,6 +46,13 @@ export const TasksContextProvider: FC<TTasksContextProviderProps> = ({
     [dispatch]
   );
 
+  const setTasksFilter = useCallback(
+    (filter: EFilters) => {
+      dispatch(setTasksFilterAction(filter));
+    },
+    [dispatch]
+  );
+
   return (
     <TasksContext.Provider
       value={{
@@ -52,6 +61,7 @@ export const TasksContextProvider: FC<TTasksContextProviderProps> = ({
         updateTaskText,
         removeTask,
         toggleTaskStatus,
+        setTasksFilter,
       }}
     >
       {children}
