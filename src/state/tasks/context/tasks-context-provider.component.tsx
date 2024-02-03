@@ -2,7 +2,12 @@ import { useReducer, useCallback, ReactNode, FC } from "react";
 
 import { TasksContext } from "./use-tasks-context";
 import { reducer, initialState } from "../tasks.reducer";
-import { createTaskAction } from "../tasks.actions";
+import {
+  createTaskAction,
+  updateTaskTextAction,
+  removeTaskAction,
+  toggleTaskStatusAction,
+} from "../tasks.actions";
 
 export type TTasksContextProviderProps = {
   children: ReactNode;
@@ -18,8 +23,37 @@ export const TasksContextProvider: FC<TTasksContextProviderProps> = ({
     [dispatch]
   );
 
+  const updateTaskText = useCallback(
+    (taskId: string, newText: string) => {
+      dispatch(updateTaskTextAction(taskId, newText));
+    },
+    [dispatch]
+  );
+
+  const removeTask = useCallback(
+    (taskId: string) => {
+      dispatch(removeTaskAction(taskId));
+    },
+    [dispatch]
+  );
+
+  const toggleTaskStatus = useCallback(
+    (taskId: string) => {
+      dispatch(toggleTaskStatusAction(taskId));
+    },
+    [dispatch]
+  );
+
   return (
-    <TasksContext.Provider value={{ state, createTask }}>
+    <TasksContext.Provider
+      value={{
+        state,
+        createTask,
+        updateTaskText,
+        removeTask,
+        toggleTaskStatus,
+      }}
+    >
       {children}
     </TasksContext.Provider>
   );
