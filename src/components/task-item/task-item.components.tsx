@@ -1,7 +1,13 @@
 import React from "react";
-import Input from "@mui/material/Input";
 
-import { Box, IconButton, Typography, Checkbox } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  Typography,
+  Checkbox,
+  Divider,
+  TextField,
+} from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import EditIcon from "@mui/icons-material/Edit";
@@ -20,9 +26,12 @@ export const TaskItem: React.FC<TTaskItemprops> = ({
   onToggle,
 }) => {
   const [isEditing, setIsEditing] = React.useState(false);
-  const [editValue, setEditValue] = React.useState("");
+  const [editValue, setEditValue] = React.useState(text);
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const handleEditStart = () => setIsEditing(true);
+  const handleEditStart = () => {
+    setIsEditing(true);
+  };
 
   const handleEditConfirm = () => {
     setIsEditing(false);
@@ -37,35 +46,96 @@ export const TaskItem: React.FC<TTaskItemprops> = ({
     setEditValue(ev.target.value);
   };
 
+  const handleInputEnterKey = (ev: React.KeyboardEvent<HTMLInputElement>) => {
+    if (ev.key === "Enter") {
+      handleEditConfirm();
+    }
+  };
+
+  React.useEffect(() => {
+    if (isEditing) {
+      inputRef.current?.focus();
+    }
+  }, [isEditing]);
+
   return (
-    <Box sx={{ display: "flex" }}>
-      {isEditing ? (
-        <>
-          <Input defaultValue={text} onChange={handleInputChange} />
-          <IconButton
-            aria-label="confirm-task-edit"
-            onClick={handleEditConfirm}
-          >
-            <CheckIcon />
-          </IconButton>
-          <IconButton aria-label="close-task-edit" onClick={handleEditClose}>
-            <CloseIcon />
-          </IconButton>
-        </>
-      ) : (
-        <>
-          <Checkbox onChange={onToggle} checked={isComplete} />
-          <Typography
-            variant="body2"
-            sx={[isComplete && { textDecoration: "line-through" }]}
-          >
-            {text}
-          </Typography>
-          <IconButton aria-label="edit-task" onClick={handleEditStart}>
-            <EditIcon />
-          </IconButton>
-        </>
-      )}
-    </Box>
+    <div>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "start",
+          gap: "4px",
+          minHeight: "37px",
+        }}
+      >
+        <Checkbox
+          onChange={onToggle}
+          checked={isComplete}
+          size="small"
+          sx={{ padding: "4px", marginTop: "8px" }}
+        />
+        {isEditing ? (
+          <>
+            <TextField
+              fullWidth
+              placeholder="Task text"
+              variant="standard"
+              defaultValue={text}
+              onChange={handleInputChange}
+              InputProps={{
+                disableUnderline: true,
+              }}
+              inputProps={{
+                style: {
+                  padding: "0 0 1px",
+                  textDecoration: isComplete ? "line-through" : "none",
+                },
+              }}
+              sx={{ marginTop: "10px" }}
+              inputRef={inputRef}
+              onKeyDown={handleInputEnterKey}
+            />
+            <IconButton
+              aria-label="confirm-task-edit"
+              size="small"
+              onClick={handleEditConfirm}
+              color="success"
+            >
+              <CheckIcon />
+            </IconButton>
+            <IconButton
+              aria-label="close-task-edit"
+              size="small"
+              onClick={handleEditClose}
+            >
+              <CloseIcon />
+            </IconButton>
+          </>
+        ) : (
+          <>
+            <Typography
+              variant="body1"
+              sx={[
+                isComplete && {
+                  textDecoration: "line-through",
+                },
+                { wordBreak: "break-word", marginTop: "10px" },
+              ]}
+            >
+              {text}
+            </Typography>
+            <IconButton
+              aria-label="edit-task"
+              size="small"
+              onClick={handleEditStart}
+              sx={{ marginLeft: "auto" }}
+            >
+              <EditIcon />
+            </IconButton>
+          </>
+        )}
+      </Box>
+      <Divider />
+    </div>
   );
 };

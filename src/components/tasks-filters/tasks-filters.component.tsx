@@ -1,11 +1,6 @@
 import React from "react";
 import Radio from "@mui/material/Radio";
-import {
-  RadioGroup,
-  FormControlLabel,
-  FormControl,
-  FormLabel,
-} from "@mui/material";
+import { RadioGroup, FormControlLabel, FormControl } from "@mui/material";
 
 import { useTasksContext } from "~/state/tasks/context/use-tasks-context";
 import { EFilters } from "~/state/tasks/tasks.types";
@@ -21,14 +16,14 @@ export const TasksFilters = () => {
   };
 
   return (
-    <FormControl>
-      <FormLabel id="tasks-filter-label">Tasks filter</FormLabel>
+    <FormControl sx={{ marginTop: "auto" }}>
       <RadioGroup
         row
         aria-labelledby="tasks-filter-label"
         name="tasks-filter-radio-buttons-group"
         value={filter}
         onChange={handleFilterChange}
+        sx={{ justifyContent: "space-evenly" }}
       >
         <FormControlLabel
           value={EFilters.SHOW_ALL}

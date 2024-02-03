@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, IconButton, Input } from "@mui/material";
+import { Box, IconButton, TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
 import { useTasksContext } from "~/state/tasks/context/use-tasks-context";
@@ -21,14 +21,18 @@ export const CreateTaskInput = () => {
   };
 
   return (
-    <Box>
-      <Input
+    <Box sx={{ display: "flex", alignItems: "end" }}>
+      <TextField
+        placeholder="Enter text"
+        label="Create a task"
+        variant="standard"
         value={inputValue}
         onChange={(ev) => setInputValue(ev.target.value)}
         onKeyDown={handleInputEnterKey}
+        fullWidth
       />
-      <IconButton onClick={handleCreateTask}>
-        <AddIcon aria-label="create task" />
+      <IconButton size="small" color="primary" onClick={handleCreateTask}>
+        <AddIcon fontSize="large" aria-label="create task" />
       </IconButton>
     </Box>
   );

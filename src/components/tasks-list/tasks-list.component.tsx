@@ -7,7 +7,14 @@ import { useTasksContext } from "~/state/tasks/context/use-tasks-context";
 export const TasksList = () => {
   const { tasks, updateTaskText, toggleTaskStatus } = useTasksContext();
   return (
-    <Box>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 1,
+        overflow: "auto",
+      }}
+    >
       {tasks.map((task) => (
         <TaskItem
           key={task.id}
