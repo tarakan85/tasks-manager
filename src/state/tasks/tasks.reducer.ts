@@ -1,3 +1,5 @@
+import { nanoid } from "nanoid";
+
 import { TAction, EActionTypes } from "./tasks.actions";
 import { Task, EFilters } from "./tasks.types";
 
@@ -19,7 +21,7 @@ export const reducer = (state: TTasksState, action: TAction): TTasksState => {
         tasks: [
           ...state.tasks,
           {
-            id: Math.random().toString(),
+            id: nanoid(),
             text: action.payload,
             isComplete: false,
           },
