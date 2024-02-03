@@ -1,30 +1,15 @@
-import React from "react";
-
-import { useTasksContext } from "~/state/tasks/context/use-tasks-context";
-
 import { Box } from "@mui/material";
 
+import { CreateTaskInput } from "~/components/create-task-input/create-task-input.component";
+import { TasksList } from "~/components/tasks-list/tasks-list.component";
+import { TasksFilters } from "~/components/tasks-filters/tasks-filters.component";
+
 export const TaskManager = () => {
-  const { tasks, createTask } = useTasksContext();
-
-  const [inputValue, setInputValue] = React.useState("");
-
   return (
-    <div>
-      <input
-        value={inputValue}
-        onChange={(ev) => setInputValue(ev.target.value)}
-      />
-      <button
-        onClick={() => {
-          createTask(inputValue);
-          setInputValue("");
-        }}
-      >
-        create task
-      </button>
-      <code>{JSON.stringify(tasks, null, 2)}</code>
-      <Box>hello</Box>
-    </div>
+    <Box>
+      <CreateTaskInput />
+      <TasksList />
+      <TasksFilters />
+    </Box>
   );
 };
