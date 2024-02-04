@@ -67,7 +67,12 @@ export const CreateTaskInput = () => {
           fullWidth
         />
       </Tooltip>
-      <IconButton size="small" color="primary" onClick={handleCreateTask}>
+      <IconButton
+        size="small"
+        color="primary"
+        onClick={handleCreateTask}
+        onMouseDown={(ev) => ev.preventDefault()}
+      >
         <AddIcon fontSize="large" aria-label="create task" />
       </IconButton>
     </Box>
