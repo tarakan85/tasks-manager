@@ -15,18 +15,20 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 import { Task } from "~/state/tasks/tasks.types";
 
-export type TTaskItemprops = Task & {
+export type TTaskItemProps = Task & {
   onEditConfirm: (newText: string) => void;
   onToggle: () => void;
   onRemove: () => void;
+  dragElem?: React.ReactNode;
 };
 
-export const TaskItem: React.FC<TTaskItemprops> = ({
+export const TaskItem: React.FC<TTaskItemProps> = ({
   text,
   isCompleted,
   onEditConfirm,
   onToggle,
   onRemove,
+  dragElem,
 }) => {
   const [isEditing, setIsEditing] = React.useState(false);
   const [editValue, setEditValue] = React.useState(text);
@@ -142,6 +144,7 @@ export const TaskItem: React.FC<TTaskItemprops> = ({
           minHeight: "37px",
         }}
       >
+        {dragElem && dragElem}
         <Checkbox
           onChange={onToggle}
           checked={isCompleted}

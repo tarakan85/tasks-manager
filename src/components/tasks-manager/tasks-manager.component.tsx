@@ -17,8 +17,8 @@ export const TasksManager = () => {
     >
       <Paper
         sx={{
-          width: 480,
-          height: ["calc(100vh - 48px)", 680],
+          width: 500,
+          height: ["calc(100vh - 48px)", 720],
           display: "flex",
           flexDirection: "column",
           padding: 3,
@@ -26,7 +26,7 @@ export const TasksManager = () => {
         }}
         elevation={4}
       >
-        <Typography variant="h5" textAlign="center" mb={-3}>
+        <Typography variant="h4" textAlign="center" mb={-2}>
           Tasks manager
         </Typography>
         <CreateTaskInput />

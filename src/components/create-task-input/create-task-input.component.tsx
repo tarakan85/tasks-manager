@@ -21,7 +21,7 @@ export const CreateTaskInput = () => {
   };
 
   return (
-    <Box sx={{ display: "flex", alignItems: "end" }}>
+    <Box sx={{ display: "flex", alignItems: "end", px: 3 }}>
       <TextField
         placeholder="Enter text"
         label="Create a task"
