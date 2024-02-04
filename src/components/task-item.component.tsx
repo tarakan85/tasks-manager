@@ -48,7 +48,9 @@ export const TaskItem: React.FC<TTaskItemProps> = ({
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
+
       timeoutRef.current = setTimeout(() => setShowTooltip(false), 3000);
+      editInputRef.current?.focus();
     } else {
       setShowTooltip(false);
       setIsEditing(false);

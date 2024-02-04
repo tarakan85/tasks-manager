@@ -10,6 +10,7 @@ export const CreateTaskInput = () => {
   const [inputValue, setInputValue] = React.useState("");
   const [showTooltip, setShowTooltip] = React.useState(false);
   const timeoutRef = React.useRef<NodeJS.Timeout>();
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   const handleCreateTask = () => {
     const inputIsEmpty = !inputValue.trim();
@@ -19,7 +20,9 @@ export const CreateTaskInput = () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
+
       timeoutRef.current = setTimeout(() => setShowTooltip(false), 3000);
+      inputRef.current?.focus();
     } else {
       setShowTooltip(false);
       createTask(inputValue);
@@ -54,6 +57,7 @@ export const CreateTaskInput = () => {
         }}
       >
         <TextField
+          inputRef={inputRef}
           placeholder="Enter text"
           label="Create a task"
           variant="standard"
