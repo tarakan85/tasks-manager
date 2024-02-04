@@ -70,3 +70,7 @@ This command will serve the production build of the app locally, allowing you to
 
 - **npm**: 9.5.1
 - **Node.js**: 20.11.0
+
+## Live Version
+
+The live version of this application is available at [https://tasks-manager-654c3.web.app/](https://tasks-manager-654c3.web.app/).
