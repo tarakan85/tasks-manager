@@ -6,6 +6,7 @@ import {
   Checkbox,
   Divider,
   TextField,
+  Tooltip,
 } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
@@ -32,14 +33,27 @@ export const TaskItem: React.FC<TTaskItemProps> = ({
   const [isEditing, setIsEditing] = React.useState(false);
   const [editValue, setEditValue] = React.useState(text);
   const editInputRef = React.useRef<HTMLInputElement>(null);
+  const [showTooltip, setShowTooltip] = React.useState(false);
+  const timeoutRef = React.useRef<NodeJS.Timeout>();
 
   const handleEditStart = () => {
     setIsEditing(true);
   };
 
   const handleEditConfirm = () => {
-    setIsEditing(false);
-    onEditConfirm(editValue);
+    const inputIsEmpty = !editValue.trim();
+
+    if (inputIsEmpty) {
+      setShowTooltip(true);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = setTimeout(() => setShowTooltip(false), 3000);
+    } else {
+      setShowTooltip(false);
+      setIsEditing(false);
+      onEditConfirm(editValue);
+    }
   };
 
   const handleEditClose = () => {
@@ -96,25 +110,44 @@ export const TaskItem: React.FC<TTaskItemProps> = ({
 
   const editModeElem = (
     <>
-      <TextField
-        fullWidth
-        placeholder="Task text"
-        variant="standard"
-        defaultValue={text}
-        onChange={handleInputChange}
-        InputProps={{
-          disableUnderline: true,
-        }}
-        inputProps={{
-          style: {
-            padding: "0 0 1px",
-            textDecoration: isCompleted ? "line-through" : "none",
+      <Tooltip
+        open={showTooltip}
+        title="Please fill out this field"
+        placement="bottom"
+        arrow
+        slotProps={{
+          popper: {
+            modifiers: [
+              {
+                name: "offset",
+                options: {
+                  offset: [0, 0],
+                },
+              },
+            ],
           },
         }}
-        sx={{ marginTop: "10px" }}
-        inputRef={editInputRef}
-        onKeyDown={handleInputEnterKey}
-      />
+      >
+        <TextField
+          fullWidth
+          placeholder="Task text"
+          variant="standard"
+          defaultValue={text}
+          onChange={handleInputChange}
+          InputProps={{
+            disableUnderline: true,
+          }}
+          inputProps={{
+            style: {
+              padding: "0 0 1px",
+              textDecoration: isCompleted ? "line-through" : "none",
+            },
+          }}
+          sx={{ marginTop: "10px" }}
+          inputRef={editInputRef}
+          onKeyDown={handleInputEnterKey}
+        />
+      </Tooltip>
       <IconButton
         aria-label="confirm-task-edit"
         size="small"
