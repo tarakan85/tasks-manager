@@ -1,6 +1,6 @@
 import CssBaseline from "@mui/material/CssBaseline";
 
-import { TaskManager } from "./components/task-manager/task-manager.component";
+import { TasksManager } from "./components/tasks-manager/tasks-manager.component";
 import { TasksContextProvider } from "./state/tasks/context/tasks-context-provider.component";
 
 const App = () => {
@@ -8,7 +8,7 @@ const App = () => {
     <>
       <CssBaseline />
       <TasksContextProvider>
-        <TaskManager />
+        <TasksManager />
       </TasksContextProvider>
     </>
   );

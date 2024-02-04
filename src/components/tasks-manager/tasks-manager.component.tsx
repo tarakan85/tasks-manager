@@ -4,7 +4,7 @@ import { CreateTaskInput } from "~/components/create-task-input/create-task-inpu
 import { TasksList } from "~/components/tasks-list/tasks-list.component";
 import { TasksFilters } from "~/components/tasks-filters/tasks-filters.component";
 
-export const TaskManager = () => {
+export const TasksManager = () => {
   return (
     <Box
       sx={{
