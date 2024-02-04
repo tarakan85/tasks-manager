@@ -2,19 +2,19 @@ import { nanoid } from "nanoid";
 
 import { TAction, EActionTypes } from "./tasks.actions";
 import { Task, EFilters } from "./tasks.types";
+import * as storage from "~/services/sotrage.service";
 
 export type TTasksState = {
   tasks: Task[];
   filter: EFilters;
 };
 
-export const initialState: TTasksState = {
-  tasks: [
-    { text: "hello", id: nanoid(), isCompleted: false },
-    { text: "world", id: nanoid(), isCompleted: false },
-  ],
+export const defaultState: TTasksState = {
+  tasks: [],
   filter: EFilters.SHOW_ALL,
 };
+
+export const initialState = storage.getTasksState();
 
 export const reducer = (state: TTasksState, action: TAction): TTasksState => {
   switch (action.type) {

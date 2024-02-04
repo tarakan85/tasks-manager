@@ -10,6 +10,7 @@ import {
   setTasksFilterAction,
 } from "../tasks.actions";
 import { EFilters, Task } from "../tasks.types";
+import * as storage from "~/services/sotrage.service";
 
 type TFilterFn = (task: Task) => boolean;
 
@@ -74,6 +75,10 @@ export const TasksContextProvider: React.FC<TTasksContextProviderProps> = ({
   const filteredTasks = React.useMemo(() => {
     return applyTasksFilter(tasks, filter);
   }, [tasks, filter]);
+
+  React.useEffect(() => {
+    storage.saveTasksState(state);
+  }, [state]);
 
   return (
     <TasksContext.Provider
