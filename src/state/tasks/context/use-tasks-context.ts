@@ -1,5 +1,4 @@
 import React from "react";
-
 import { TTasksState, initialState } from "../tasks.reducer";
 import { EFilters } from "../tasks.types";
 import {

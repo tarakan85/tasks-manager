@@ -1,8 +1,8 @@
 import { Box, Paper, Typography } from "@mui/material";
 
-import { CreateTaskInput } from "~/components/create-task-input/create-task-input.component";
-import { TasksList } from "~/components/tasks-list/tasks-list.component";
-import { TasksFilters } from "~/components/tasks-filters/tasks-filters.component";
+import { CreateTaskInput } from "./create-task-input.component";
+import { TasksList } from "./tasks-list.component";
+import { TasksFilters } from "./tasks-filters.component";
 
 export const TasksManager = () => {
   return (

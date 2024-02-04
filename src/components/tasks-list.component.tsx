@@ -7,8 +7,8 @@ import {
   OnDragEndResponder,
 } from "react-beautiful-dnd";
 
-import { TaskItem } from "~/components/task-item/task-item.components";
 import { useTasksContext } from "~/state/tasks/context/use-tasks-context";
+import { TaskItem } from "./task-item.components";
 
 export const TasksList = () => {
   const {
