@@ -95,7 +95,7 @@ export const TaskItem: React.FC<TTaskItemProps> = ({
         aria-label="edit-task"
         size="small"
         onClick={handleEditStart}
-        sx={{ marginLeft: "auto" }}
+        sx={{ marginLeft: "auto", color: "grey.700" }}
       >
         <EditIcon />
       </IconButton>
@@ -162,6 +162,7 @@ export const TaskItem: React.FC<TTaskItemProps> = ({
         aria-label="close-task-edit"
         size="small"
         onClick={handleEditClose}
+        sx={{ color: "grey.700" }}
       >
         <CloseIcon />
       </IconButton>

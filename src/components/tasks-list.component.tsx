@@ -87,6 +87,7 @@ export const TasksList = () => {
                                 alignItems: "end",
                                 marginTop: "10px",
                                 marginRight: "-6px",
+                                color: "grey.600",
                               }}
                             >
                               <DragIndicatorIcon />
