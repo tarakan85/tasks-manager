@@ -1,30 +1,72 @@
-# React + TypeScript + Vite
+# Tasks Manager App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a Tasks Manager application built using [Vite](https://vitejs.dev/) and [TypeScript](https://www.typescriptlang.org/), suitable for managing your daily tasks efficiently. The app allows you to add, edit, delete, and prioritize tasks to stay organized and productive.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Before running the application, make sure you have Node.js installed on your system. You can download it from [here](https://nodejs.org/).
 
-## Expanding the ESLint configuration
+1. Clone this repository to your local machine:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+   ```bash
+   git clone <repository-url>
+   ```
 
-- Configure the top-level `parserOptions` property like this:
+2. Navigate into the project directory:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+   ```bash
+   cd tasks-manager-app
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+## Usage
+
+### Development Mode
+
+To run the app in development mode, use the following command:
+
+```bash
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+This command will start the Vite development server and open the app in your default web browser. You can make changes to the code, and the application will automatically reload with the updated changes.
+
+### Build
+
+To build the app for production, use the following command:
+
+```bash
+npm run build
+```
+
+This command will transpile the TypeScript code to JavaScript using TypeScript Compiler (tsc) and bundle the application using Vite's build tool.
+
+### Linting
+
+To lint the TypeScript files in the project, use the following command:
+
+```bash
+npm run lint
+```
+
+This command runs ESLint with TypeScript support to ensure code consistency and identify potential errors or warnings.
+
+### Preview
+
+To preview the production build locally, use the following command:
+
+```bash
+npm run preview
+```
+
+This command will serve the production build of the app locally, allowing you to preview it before deployment.
+
+## Dependencies
+
+- **npm**: 9.5.1
+- **Node.js**: 20.11.0
