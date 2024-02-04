@@ -11,11 +11,20 @@ import { TaskItem } from "~/components/task-item/task-item.components";
 import { useTasksContext } from "~/state/tasks/context/use-tasks-context";
 
 export const TasksList = () => {
-  const { tasks, updateTaskText, toggleTaskStatus, removeTask } =
-    useTasksContext();
+  const {
+    tasks,
+    updateTaskText,
+    toggleTaskStatus,
+    removeTask,
+    changeTaskOrder,
+  } = useTasksContext();
 
-  const onDragEnd: OnDragEndResponder = (result) => {
-    console.log(result);
+  const handleDragEnd: OnDragEndResponder = (result) => {
+    if (!result.destination) {
+      return;
+    }
+
+    changeTaskOrder(result.source.index, result.destination.index);
   };
 
   const emptyListElem = (
@@ -40,9 +49,9 @@ export const TasksList = () => {
   );
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
+    <DragDropContext onDragEnd={handleDragEnd}>
       <Droppable droppableId="droppable">
-        {(provided, snapshot) => (
+        {(provided) => (
           <Box
             {...provided.droppableProps}
             ref={provided.innerRef}
@@ -58,7 +67,7 @@ export const TasksList = () => {
               ? emptyListElem
               : tasks.map((task, index) => (
                   <Draggable key={task.id} draggableId={task.id} index={index}>
-                    {(provided, snapshot) => (
+                    {(provided) => (
                       <div ref={provided.innerRef} {...provided.draggableProps}>
                         <TaskItem
                           {...task}

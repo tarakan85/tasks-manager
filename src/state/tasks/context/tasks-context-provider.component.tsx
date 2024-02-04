@@ -8,6 +8,7 @@ import {
   removeTaskAction,
   toggleTaskStatusAction,
   setTasksFilterAction,
+  changeTaskOrderAction,
 } from "../tasks.actions";
 import { EFilters, Task } from "../tasks.types";
 import * as storage from "~/services/sotrage.service";
@@ -70,6 +71,12 @@ export const TasksContextProvider: React.FC<TTasksContextProviderProps> = ({
     [dispatch]
   );
 
+  const changeTaskOrder = React.useCallback(
+    (fromIndex: number, toIndex: number) => {
+      dispatch(changeTaskOrderAction(fromIndex, toIndex));
+    },
+    [dispatch]
+  );
   const { tasks, filter } = state;
 
   const filteredTasks = React.useMemo(() => {
@@ -90,6 +97,7 @@ export const TasksContextProvider: React.FC<TTasksContextProviderProps> = ({
         removeTask,
         toggleTaskStatus,
         setTasksFilter,
+        changeTaskOrder,
       }}
     >
       {children}

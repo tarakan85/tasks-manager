@@ -8,6 +8,7 @@ import {
   removeTaskAction,
   toggleTaskStatusAction,
   setTasksFilterAction,
+  changeTaskOrderAction,
 } from "../tasks.actions";
 
 export const TasksContext = React.createContext<{
@@ -20,6 +21,7 @@ export const TasksContext = React.createContext<{
     ...args: Parameters<typeof toggleTaskStatusAction>
   ) => void;
   setTasksFilter: (...args: Parameters<typeof setTasksFilterAction>) => void;
+  changeTaskOrder: (...args: Parameters<typeof changeTaskOrderAction>) => void;
 }>({
   tasks: initialState.tasks,
   filter: initialState.filter,
@@ -28,6 +30,7 @@ export const TasksContext = React.createContext<{
   removeTask: () => undefined,
   toggleTaskStatus: () => undefined,
   setTasksFilter: () => undefined,
+  changeTaskOrder: () => undefined,
 });
 
 export const useTasksContext = () => {

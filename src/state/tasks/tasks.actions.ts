@@ -6,6 +6,7 @@ export enum EActionTypes {
   REMOVE_TASK = "REMOVE_TASK",
   TOGGLE_TASK_STATUS = "TOGGLE_TASK_STATUS",
   SET_TASKS_FILTER = "SET_TASKS_FILTER",
+  CHANGE_TASK_ORDER = "CHANGE_TASK_ORDER",
 }
 
 export const createTaskAction = (text: string) => ({
@@ -36,10 +37,19 @@ export const setTasksFilterAction = (filter: EFilters) => ({
   payload: filter,
 });
 
+export const changeTaskOrderAction = (fromIndex: number, toIndex: number) => ({
+  type: EActionTypes.CHANGE_TASK_ORDER as const,
+  payload: {
+    fromIndex,
+    toIndex,
+  },
+});
+
 export type TAction = ReturnType<
   | typeof createTaskAction
   | typeof updateTaskTextAction
   | typeof removeTaskAction
   | typeof toggleTaskStatusAction
   | typeof setTasksFilterAction
+  | typeof changeTaskOrderAction
 >;

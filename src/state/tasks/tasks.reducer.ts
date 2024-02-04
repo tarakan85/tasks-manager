@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 import { TAction, EActionTypes } from "./tasks.actions";
 import { Task, EFilters } from "./tasks.types";
 import * as storage from "~/services/sotrage.service";
+import { cutAndInsertAfter } from "~/utils/array.utils";
 
 export type TTasksState = {
   tasks: Task[];
@@ -62,6 +63,17 @@ export const reducer = (state: TTasksState, action: TAction): TTasksState => {
         ...state,
         filter: action.payload,
       };
+
+    case EActionTypes.CHANGE_TASK_ORDER:
+      return {
+        ...state,
+        tasks: cutAndInsertAfter(
+          state.tasks,
+          action.payload.fromIndex,
+          action.payload.toIndex
+        ),
+      };
+
     default:
       return state;
   }
