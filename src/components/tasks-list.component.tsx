@@ -58,7 +58,6 @@ export const TasksList = () => {
             sx={{
               display: "flex",
               flexDirection: "column",
-              gap: 1,
               overflowY: "auto",
               flexGrow: 1,
             }}
@@ -68,7 +67,11 @@ export const TasksList = () => {
               : tasks.map((task, index) => (
                   <Draggable key={task.id} draggableId={task.id} index={index}>
                     {(provided) => (
-                      <div ref={provided.innerRef} {...provided.draggableProps}>
+                      <Box
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        sx={{ "&:not(:last-child)": { mb: 1 } }}
+                      >
                         <TaskItem
                           {...task}
                           onEditConfirm={(newText) => {
@@ -90,7 +93,7 @@ export const TasksList = () => {
                             </Box>
                           }
                         />
-                      </div>
+                      </Box>
                     )}
                   </Draggable>
                 ))}
