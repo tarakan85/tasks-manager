@@ -9,7 +9,7 @@ export const TasksFilters = () => {
   const { setTasksFilter, filter } = useTasksContext();
 
   const handleFilterChange = (
-    ev: React.ChangeEvent<HTMLInputElement>,
+    _ev: React.ChangeEvent<HTMLInputElement>,
     filter: string
   ) => {
     setTasksFilter(filter as EFilters);
