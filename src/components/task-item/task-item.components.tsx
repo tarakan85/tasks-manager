@@ -21,7 +21,7 @@ export type TTaskItemprops = Task & {
 
 export const TaskItem: React.FC<TTaskItemprops> = ({
   text,
-  isComplete,
+  isCompleted,
   onEditConfirm,
   onToggle,
 }) => {
@@ -70,7 +70,7 @@ export const TaskItem: React.FC<TTaskItemprops> = ({
       >
         <Checkbox
           onChange={onToggle}
-          checked={isComplete}
+          checked={isCompleted}
           size="small"
           sx={{ padding: "4px", marginTop: "8px" }}
         />
@@ -88,7 +88,7 @@ export const TaskItem: React.FC<TTaskItemprops> = ({
               inputProps={{
                 style: {
                   padding: "0 0 1px",
-                  textDecoration: isComplete ? "line-through" : "none",
+                  textDecoration: isCompleted ? "line-through" : "none",
                 },
               }}
               sx={{ marginTop: "10px" }}
@@ -116,7 +116,7 @@ export const TaskItem: React.FC<TTaskItemprops> = ({
             <Typography
               variant="body1"
               sx={[
-                isComplete && {
+                isCompleted && {
                   textDecoration: "line-through",
                 },
                 { wordBreak: "break-word", marginTop: "10px" },

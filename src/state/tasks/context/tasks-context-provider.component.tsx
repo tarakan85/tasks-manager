@@ -14,8 +14,8 @@ import { EFilters, Task } from "../tasks.types";
 type TFilterFn = (task: Task) => boolean;
 
 const filterFnMap: Partial<Record<EFilters, TFilterFn>> = {
-  [EFilters.SHOW_ACTIVE]: (task: Task) => !task.isComplete,
-  [EFilters.SHOW_COMPLETED]: (task: Task) => task.isComplete,
+  [EFilters.SHOW_ACTIVE]: (task: Task) => !task.isCompleted,
+  [EFilters.SHOW_COMPLETED]: (task: Task) => task.isCompleted,
 };
 
 const applyTasksFilter = (tasks: Task[], filter: EFilters) => {

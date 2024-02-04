@@ -10,8 +10,8 @@ export type TTasksState = {
 
 export const initialState: TTasksState = {
   tasks: [
-    { text: "hello", id: nanoid(), isComplete: false },
-    { text: "world", id: nanoid(), isComplete: false },
+    { text: "hello", id: nanoid(), isCompleted: false },
+    { text: "world", id: nanoid(), isCompleted: false },
   ],
   filter: EFilters.SHOW_ALL,
 };
@@ -26,7 +26,7 @@ export const reducer = (state: TTasksState, action: TAction): TTasksState => {
           {
             id: nanoid(),
             text: action.payload,
-            isComplete: false,
+            isCompleted: false,
           },
         ],
       };
@@ -52,7 +52,7 @@ export const reducer = (state: TTasksState, action: TAction): TTasksState => {
         ...state,
         tasks: state.tasks.map((task) =>
           task.id === action.payload
-            ? { ...task, isComplete: !task.isComplete }
+            ? { ...task, isCompleted: !task.isCompleted }
             : task
         ),
       };

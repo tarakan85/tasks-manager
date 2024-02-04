@@ -1,7 +1,7 @@
 export type Task = {
   id: string;
   text: string;
-  isComplete: boolean;
+  isCompleted: boolean;
 };
 
 export enum EFilters {
