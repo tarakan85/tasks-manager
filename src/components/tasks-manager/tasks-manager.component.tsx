@@ -1,4 +1,4 @@
-import { Box, Paper } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 
 import { CreateTaskInput } from "~/components/create-task-input/create-task-input.component";
 import { TasksList } from "~/components/tasks-list/tasks-list.component";
@@ -26,6 +26,9 @@ export const TasksManager = () => {
         }}
         elevation={4}
       >
+        <Typography variant="h5" textAlign="center" mb={-3}>
+          Tasks manager
+        </Typography>
         <CreateTaskInput />
         <TasksList />
         <TasksFilters />

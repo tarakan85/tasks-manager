@@ -11,12 +11,14 @@ import {
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import EditIcon from "@mui/icons-material/Edit";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 import { Task } from "~/state/tasks/tasks.types";
 
 export type TTaskItemprops = Task & {
   onEditConfirm: (newText: string) => void;
   onToggle: () => void;
+  onRemove: () => void;
 };
 
 export const TaskItem: React.FC<TTaskItemprops> = ({
@@ -24,6 +26,7 @@ export const TaskItem: React.FC<TTaskItemprops> = ({
   isCompleted,
   onEditConfirm,
   onToggle,
+  onRemove,
 }) => {
   const [isEditing, setIsEditing] = React.useState(false);
   const [editValue, setEditValue] = React.useState(text);
@@ -131,6 +134,14 @@ export const TaskItem: React.FC<TTaskItemprops> = ({
               sx={{ marginLeft: "auto" }}
             >
               <EditIcon />
+            </IconButton>
+            <IconButton
+              aria-label="remove-task"
+              size="small"
+              onClick={onRemove}
+              color="error"
+            >
+              <DeleteForeverIcon />
             </IconButton>
           </>
         )}

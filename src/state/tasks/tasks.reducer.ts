@@ -44,7 +44,7 @@ export const reducer = (state: TTasksState, action: TAction): TTasksState => {
     case EActionTypes.REMOVE_TASK:
       return {
         ...state,
-        tasks: state.tasks.filter((task) => task.id === action.payload),
+        tasks: state.tasks.filter((task) => task.id !== action.payload),
       };
 
     case EActionTypes.TOGGLE_TASK_STATUS:
