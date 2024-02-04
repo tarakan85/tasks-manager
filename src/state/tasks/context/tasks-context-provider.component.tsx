@@ -10,7 +10,7 @@ import {
   changeTaskOrderAction,
 } from "../tasks.actions";
 import { EFilters, Task } from "../tasks.types";
-import * as storage from "~/services/sotrage.service";
+import * as storage from "~/services/storage.service";
 
 type TFilterFn = (task: Task) => boolean;
 

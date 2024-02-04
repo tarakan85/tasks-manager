@@ -2,7 +2,7 @@ import { nanoid } from "nanoid";
 
 import { TAction, EActionTypes } from "./tasks.actions";
 import { Task, EFilters } from "./tasks.types";
-import * as storage from "~/services/sotrage.service";
+import * as storage from "~/services/storage.service";
 import { cutAndInsertAfter } from "~/utils/array.utils";
 
 export type TTasksState = {
