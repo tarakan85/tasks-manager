@@ -8,7 +8,7 @@ import {
 } from "react-beautiful-dnd";
 
 import { useTasksContext } from "~/state/tasks/context/use-tasks-context";
-import { TaskItem } from "./task-item.components";
+import { TaskItem } from "./task-item.component";
 
 export const TasksList = () => {
   const {
