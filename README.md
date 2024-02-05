@@ -9,13 +9,13 @@ Before running the application, make sure you have Node.js installed on your sys
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone <repository-url>
+   git clone git@github.com:tarakan85/tasks-manager.git
    ```
 
 2. Navigate into the project directory:
 
    ```bash
-   cd tasks-manager-app
+   cd tasks-manager
    ```
 
 3. Install dependencies:

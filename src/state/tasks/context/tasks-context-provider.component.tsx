@@ -76,6 +76,7 @@ export const TasksContextProvider: React.FC<TTasksContextProviderProps> = ({
     },
     [dispatch]
   );
+
   const { tasks, filter } = state;
 
   const filteredTasks = React.useMemo(() => {
