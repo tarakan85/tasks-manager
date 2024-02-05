@@ -70,7 +70,7 @@ export const TasksList = () => {
                       <Box
                         ref={provided.innerRef}
                         {...provided.draggableProps}
-                        sx={{ "&:not(:last-child)": { mb: 1 } }}
+                        sx={{ mb: 1 }}
                       >
                         <TaskItem
                           {...task}
